@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modo elección</title>
+    <link rel="icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('fonts/minecraft/Minecraft.ttf') format('truetype');
+        }
+        body {
+            background: url(img/fondoMinecraft2.jpg) no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Minecraft', sans-serif;
+            color: #fff;
+            font-size: 88px;
+            margin-top: 80px;
+            text-shadow: 2px 2px 8px #000;
+        }
+        @keyframes walk {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
+        @keyframes appear {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        img.steve {
+            max-width: 570px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            animation: walk 1s linear forwards;
+        }
+        .vinetas-container {
+            position: absolute;
+            left: 30%; 
+            bottom: 300px; 
+            transform: translateX(-50%);
+            display: flex;
+            gap: 50px; 
+            opacity: 0;
+            animation: appear 0.5s ease-out forwards;
+            animation-delay: 2s; 
+        }
+        .vineta {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>ELIGE COMO JUGAR</h1>
+    <h2 id="bienvenida"></h2>
+    <div class="vinetas-container">
+        <img src="img/vineta1.png" alt="MODO CONSOLA" class="vineta" onclick="location.href='ModoConsola.html'">
+        <img src="img/vineta2.png" alt="MODO PÁGINA" class="vineta" onclick="location.href='ModoPagina.html'">
+    </div>
+    <img src="img/steve.png" alt="steve" class="steve">
+</body>
+</html>

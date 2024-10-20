@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado del Jugador</title>
+    <link rel="icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('fonts/minecraft/Minecraft.ttf') format('truetype');
+        }
+        body {
+            background: url(img/fondoAnimado4.gif) no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Minecraft', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        th, td {
+            background-color: #61dc61; /* Verde pastel */
+            border: 1px solid #000;
+            font-size: 25px;
+            padding: 10px;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Minecraft', sans-serif;
+            color: rgb(81, 81, 81);
+            text-align: center;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            border-radius: 15px;
+        }
+        th {
+            background-color: #57d6d4;
+            font-size: 30px;
+            color: brown;
+        }
+        #jugador-puntos, #maquina-puntos {
+           background-color: #77dd77; /* Verde pastel */
+        }
+        .back-button {
+            font-family: 'Minecraft', sans-serif;
+            background-color: #b37416; /* Azul pastel */
+            color: rgb(255, 255, 255);
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px; /* Añadir margen superior para separar el botón */
+        }
+        .back-button:hover {
+            background-color: #baaf33; /* Azul más oscuro al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    <h1>RESULTADO DEL JUGADOR</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>PARTICIPANTES</th>
+                <th>PARTIDAS GANADAS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Jugador</td>
+                <td id="jugador-puntos">0</td>
+            </tr>
+            <tr>
+                <td>Máquina</td>
+                <td id="maquina-puntos">0</td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="back-button" onclick="location.href='UnJugador.html'">Atrás</button>
+    <script>
+        /**
+         ** @Name: Diego André Cornejo Giraldo
+         ** @Date: 13/10/24
+         ** @Version: 1.0
+         ** @Description: Juego de Piedra, Papel o Tijera
+         */
+        // Obtener la puntuación del jugador y la máquina desde localStorage para la versión normal
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtener la puntuación del jugador y la máquina desde localStorage para la versión normal
+            let jugadorPuntosNormal = localStorage.getItem('jugadorPuntosNormal') || 0;
+            let maquinaPuntosNormal = localStorage.getItem('maquinaPuntosNormal') || 0;
+    
+            // Mostrar las puntuaciones en la tabla
+            document.getElementById('jugador-puntos').textContent = jugadorPuntosNormal;
+            document.getElementById('maquina-puntos').textContent = maquinaPuntosNormal;
+        });
+    </script>    
+</body>
+</html>

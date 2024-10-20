@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explicación del Juego: Piedra, Papel, Tijera, Lagarto, Spock</title>
+    <link rel="icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('fonts/minecraft/Minecraft.ttf') format('truetype');
+        }
+        body {
+            font-family: 'Minecraft', Arial, sans-serif;
+            background: url(img/fondoAnimado7.gif) no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            margin: 20px;
+            color: white;
+        }
+        h1, h2 {
+            color: brown;
+            font-size: 30px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .item {
+            margin: 10px;
+        }
+        img {
+            width: 300px;
+            height: 300px;
+        }
+        p{
+            font-size: 25px;
+        }
+        .back-button {
+            font-family: 'Minecraft', sans-serif;
+            background-color: brown;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CÓMO JUGAR PIEDRA, PAPEL, TIJERAS, LAGART Y SPOCK</h1>
+    <p>El juego es una extensión del clásico Piedra, Papel, Tijera. Aquí hay una explicación de cómo cada elemento interactúa con los demás:</p>
+    <div class="container">
+        <div class="item">
+            <h2>PIEDRA</h2>
+            <img src="img/piedra.png" alt="Piedra">
+            <p>Gana a Tijera y Lagarto</p>
+            <p>Pierde contra Papel y Spock</p>
+        </div>
+        <div class="item">
+            <h2>PAPEL</h2>
+            <img src="img/papel.png" alt="Papel">
+            <p>Gana a Piedra y Spock</p>
+            <p>Pierde contra Tijera y Lagarto</p>
+        </div>
+        <div class="item">
+            <h2>TIJERA</h2>
+            <img src="img/tijeras.png" alt="Tijera">
+            <p>Gana a Papel y Lagarto</p>
+            <p>Pierde contra Piedra y Spock</p>
+        </div>
+        <div class="item">
+            <h2>LAGARTO</h2>
+            <img src="img/lagarto.png" alt="Lagarto">
+            <p>Gana a Papel y Spock</p>
+            <p>Pierde contra Piedra y Tijera</p>
+        </div>
+        <div class="item">
+            <h2>SPOCK</h2>
+            <img src="img/spock.png" alt="Spock">
+            <p>Gana a Piedra y Tijera</p>
+            <p>Pierde contra Papel y Lagarto</p>
+        </div>
+    </div>
+    <button class="back-button" onclick="location.href='ModoJuegoEspecial.html'">Atrás</button>
+</body>
+</html>

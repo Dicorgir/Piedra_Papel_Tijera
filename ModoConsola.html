@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modo consola</title>
+    <link rel="icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+            text-align: center;
+            font-family: 'Minecraft', sans-serif;
+            background: url(img/fondoAnimado2.gif) no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        /**
+         ** @Name: Diego André Cornejo Giraldo
+         ** @Date: 13/10/24
+         ** @Version: 1.0
+         ** @Description: Juego de Piedra, Papel o Tijera para dos jugadores.
+         */
+        // Función para jugar de nuevo
+        window.onload = function() {
+            setTimeout(function() {
+                // Preguntar el nombre del jugador
+                let nombre = prompt("Primero dime tu nombre: ");
+                // Mostrar un mensaje de bienvenida
+                alert("Bienvenido " + nombre);
+
+                // Variables para las puntuaciones
+                let puntuacionJugadorNormal = 0; // Puntuación del jugador en modo normal
+                let puntuacionMaquinaNormal = 0; // Puntuación de la máquina en modo normal
+                let puntuacionJugadorEspecial = 0; // Puntuación del jugador en modo especial
+                let puntuacionMaquinaEspecial = 0; // Puntuación de la máquina en modo especial
+                let puntuacionJugador1Normal = 0; // Puntuación del jugador 1 en modo normal
+                let puntuacionJugador2Normal = 0; // Puntuación del jugador 2 en modo normal
+                let puntuacionJugador1Especial = 0; // Puntuación del jugador 1 en modo especial
+                let puntuacionJugador2Especial = 0; // Puntuación del jugador 2 en modo especial
+
+                // Función para jugar de nuevo
+                function jugarDeNuevo() {
+                    let juego; // Variable para guardar el juego seleccionado
+                    // Bucle para elegir el juego
+                    while (true) {
+                        // Preguntar al jugador qué juego quiere jugar
+                        juego = prompt("Elige el juego:\n1. Piedra, Papel, Tijera\n2. Piedra, Papel, Tijera, Lagarto, Spock");
+                        // Si el jugador elige 1 o 2, salir del bucle
+                        if (juego == "1" || juego == "2") break;
+                        // Si no, mostrar un mensaje de error
+                        alert("Respuesta no correcta");
+                    }
+                    // Si el jugador elige 1
+                    if (juego == "1") {
+                        // Mostrar un mensaje de que ha elegido Piedra, Papel, Tijera
+                        alert("Has elegido Piedra, Papel, Tijera");
+                        let modoJuego; // Variable para guardar el modo de juego
+                        // Bucle para elegir el modo de juego
+                        while (true) {
+                            // Preguntar al jugador si quiere jugar contra la máquina o contra otra persona
+                            modoJuego = prompt("¿Quieres jugar contra la máquina o contra otra persona?\n1. Un jugador\n2. Dos jugadores");
+                            // Si el jugador elige 1 o 2, salir del bucle
+                            if (modoJuego == "1" || modoJuego == "2") break;
+                            // Si no, mostrar un mensaje de error
+                            alert("Respuesta no correcta");
+                        }
+                        // Si el jugador elige 1
+                        if (modoJuego == "1") {
+                            // Mostrar un mensaje de que ha elegido jugar contra la máquina
+                            alert("Has elegido jugar contra la máquina");
+                            // Lógica para jugar contra la máquina
+                            let opciones = ["Piedra", "Papel", "Tijera"];
+                            let jugador; // Variable para guardar la opción elegida por el jugador
+                            // Bucle para elegir la opción
+                            while (true) {
+                                // Preguntar al jugador qué opción quiere elegir
+                                jugador = prompt("Elige: Piedra, Papel o Tijera").toLowerCase();
+                                // Si el jugador elige Piedra, Papel o Tijera, salir del bucle
+                                if (opciones.includes(jugador.charAt(0).toUpperCase() + jugador.slice(1))) break;
+                                // Si no, mostrar un mensaje de error
+                                alert("Respuesta no correcta");
+                            }
+                            // Elegir una opción aleatoria para la máquina
+                            let maquina = opciones[Math.floor(Math.random() * opciones.length)].toLowerCase();
+                            // Mostrar la opción elegida por la máquina
+                            alert("La máquina ha elegido: " + maquina);
+                            // Condicional para determinar el ganador
+                            if (jugador === maquina) {
+                                // Si es un empate, mostrar un mensaje de empate
+                                alert("Es un empate!");
+                                
+                            } else if (
+                                // Si el jugador elige Piedra y la máquina elige Tijera y así sucesivamente
+                                (jugador === "piedra" && maquina === "tijera") ||
+                                (jugador === "papel" && maquina === "piedra") ||
+                                (jugador === "tijera" && maquina === "papel")
+                            ) {
+                                // Si el jugador gana, mostrar un mensaje de que ha ganado
+                                alert("¡Has ganado!");
+                                // Aumentar la puntuación del jugador
+                                puntuacionJugadorNormal++;
+                            } else {
+                                // Si el jugador pierde, mostrar un mensaje de que ha perdido
+                                alert("¡Has perdido!");
+                                // Aumentar la puntuación de la máquina
+                                puntuacionMaquinaNormal++;
+                            }
+                            // Mostrar la puntuación del jugador y de la máquina
+                            alert("Puntuación:\n" + nombre + ": " + puntuacionJugadorNormal + "\nMáquina: " + puntuacionMaquinaNormal);
+                        } 
+                        // Si el jugador elige 2
+                        else if (modoJuego == "2") {
+                            // Mostrar un mensaje de que ha elegido jugar contra otra persona
+                            alert("Has elegido jugar contra otra persona");
+                            let jugador1; // Variable para guardar la opción elegida por el jugador 1
+                            // Bucle para elegir la opción del jugador 1
+                            while (true) {
+                                // Preguntar al jugador 1 qué opción quiere elegir
+                                jugador1 = prompt(nombre + " , elige: Piedra, Papel o Tijera").toLowerCase();
+                                // Si el jugador 1 elige Piedra, Papel o Tijera, salir del bucle
+                                if (["piedra", "papel", "tijera"].includes(jugador1)) break;
+                                // Si no, mostrar un mensaje de error
+                                alert("Respuesta no correcta");
+                            }
+                            let nombreJugador2 = prompt("Dime el nombre del otro jugador: "); // Preguntar el nombre del jugador 2
+                            let jugador2; // Variable para guardar la opción elegida por el jugador 2
+                            // Bucle para elegir la opción del jugador 2
+                            while (true) {
+                                // Preguntar al jugador 2 qué opción quiere elegir
+                                jugador2 = prompt(nombreJugador2 + ", elige: Piedra, Papel o Tijera").toLowerCase();
+                                // Si el jugador 2 elige Piedra, Papel o Tijera, salir del bucle
+                                if (["piedra", "papel", "tijera"].includes(jugador2)) break;
+                                // Si no, mostrar un mensaje de error
+                                alert("Respuesta no correcta");
+                            }
+                            // Condicional para determinar el ganador
+                            if (jugador1 === jugador2) {
+                                // Si es un empate, mostrar un mensaje de empate
+                                alert("Es un empate!");
+                            } else if (
+                                // Si el jugador 1 elige Piedra y el jugador 2 elige Tijera y así sucesivamente
+                                (jugador1 === "piedra" && jugador2 === "tijera") ||
+                                (jugador1 === "papel" && jugador2 === "piedra") ||
+                                (jugador1 === "tijera" && jugador2 === "papel")
+                            ) {
+                                // Si el jugador 1 gana, mostrar un mensaje de que ha ganado
+                                alert("¡Jugador 1 ha ganado!");
+                                // Aumentar la puntuación del jugador 1
+                                puntuacionJugador1Normal++;
+                            } else {
+                                // Si el jugador 2 gana, mostrar un mensaje de que ha ganado
+                                alert("¡Jugador 2 ha ganado!");
+                                // Aumentar la puntuación del jugador 2
+                                puntuacionJugador2Normal++;
+                            }
+                            // Mostrar la puntuación del jugador 1 y del jugador 2
+                            alert("Puntuación:\n" + nombre + ": " + puntuacionJugador1Normal + "\n" + nombreJugador2 + ": " + puntuacionJugador2Normal);
+                        }
+                    }
+                    // Si eliges la opcióno 2 
+                    else if (juego == "2") {
+                        // Mostrar un mensaje de que ha elegido Piedra, Papel, Tijera, Lagarto, Spock
+                        alert("Has elegido Piedra, Papel, Tijera, Lagarto, Spock");
+                        // Lógica para Piedra, Papel, Tijera, Lagarto, Spock
+                        let opciones = ["Piedra", "Papel", "Tijera", "Lagarto", "Spock"];
+                        let modoJuego; // Variable para guardar el modo de juego
+                        // Bucle para elegir el modo de juego
+                        while (true) {
+                            // Preguntar al jugador si quiere jugar contra la máquina o contra otra persona
+                            modoJuego = prompt("¿Quieres jugar contra la máquina o contra otra persona?\n1. Un jugador\n2. Dos jugadores");
+                            // Si el jugador elige 1 o 2, salir del bucle
+                            if (modoJuego == "1" || modoJuego == "2") break;
+                            // Si no, mostrar un mensaje de error
+                            alert("Respuesta no correcta");
+                        }
+                        // Si el jugador elige 1
+                        if (modoJuego == "1") {
+                            // Mostrar un mensaje de que ha elegido jugar contra la máquina
+                            alert("Has elegido jugar contra la máquina");
+                            let jugador; // Variable para guardar la opción elegida por el jugador
+                            // Bucle para elegir la opción
+                            while (true) { 
+                                // Preguntar al jugador qué opción quiere elegir
+                                jugador = prompt("Elige: Piedra, Papel, Tijera, Lagarto o Spock").toLowerCase();
+                                // Si el jugador elige Piedra, Papel, Tijera, Lagarto o Spock, salir del bucle
+                                if (opciones.includes(jugador.charAt(0).toUpperCase() + jugador.slice(1))) break;
+                                // Si no, mostrar un mensaje de error
+                                alert("Respuesta no correcta");
+                            }
+                            // Elegir una opción aleatoria para la máquina
+                            let maquina = opciones[Math.floor(Math.random() * opciones.length)].toLowerCase();
+                            // Mostrar la opción elegida por la máquina
+                            alert("La máquina ha elegido: " + maquina);
+                            // Condicional para determinar el ganador
+                            if (jugador === maquina) {
+                                // Si es un empate, mostrar un mensaje de empate
+                                alert("Es un empate!");
+                            } else if (
+                                // Si el jugador elige Piedra y la máquina elige Tijera o Lagarto y así sucesivamente
+                                (jugador === "piedra" && (maquina === "tijera" || maquina === "lagarto")) ||
+                                (jugador === "papel" && (maquina === "piedra" || maquina === "spock")) ||
+                                (jugador === "tijera" && (maquina === "papel" || maquina === "lagarto")) ||
+                                (jugador === "lagarto" && (maquina === "papel" || maquina === "spock")) ||
+                                (jugador === "spock" && (maquina === "piedra" || maquina === "tijera"))
+                            ) {
+                                // Si el jugador gana, mostrar un mensaje de que ha ganado
+                                alert("¡Has ganado!");
+                                // Aumentar la puntuación del jugador
+                                puntuacionJugadorEspecial++;
+                            } else {
+                                // Si el jugador pierde, mostrar un mensaje de que ha perdido
+                                alert("¡Has perdido!");
+                                // Aumentar la puntuación de la máquina
+                                puntuacionMaquinaEspecial++;
+                            }
+                            // Mostrar la puntuación del jugador y de la máquina
+                            alert("Puntuación:\n" + nombre + ": " + puntuacionJugadorEspecial + "\nMáquina: " + puntuacionMaquinaEspecial);
+                        }// Si el jugador elige 2  
+                        else if (modoJuego == "2") {
+                            // Mostrar un mensaje de que ha elegido jugar contra otra persona
+                            alert("Has elegido jugar contra otra persona");
+                            let jugador1; // Variable para guardar la opción elegida por el jugador 1
+                            // Bucle para elegir la opción del jugador 1
+                            while (true) {
+                                // Preguntar al jugador 1 qué opción quiere elegir
+                                jugador1 = prompt(nombre + ", elige: Piedra, Papel, Tijera, Lagarto o Spock").toLowerCase();
+                                // Si el jugador 1 elige Piedra, Papel, Tijera, Lagarto o Spock, salir del bucle
+                                if (opciones.includes(jugador1.charAt(0).toUpperCase() + jugador1.slice(1))) break;
+                                // Si no, mostrar un mensaje de error
+                                alert("Respuesta no correcta");
+                            }
+                            let nombreJugador2 = prompt("Dime el nombre del otro jugador: "); // Preguntar el nombre del jugador 2
+                            let jugador2; // Variable para guardar la opción elegida por el jugador 2
+                            // Bucle para elegir la opción del jugador 2
+                            while (true) {
+                                // Preguntar al jugador 2 qué opción quiere elegir
+                                jugador2 = prompt(nombreJugador2 + ", elige: Piedra, Papel, Tijera, Lagarto o Spock").toLowerCase();
+                                // Si el jugador 2 elige Piedra, Papel, Tijera, Lagarto o Spock, salir del bucle
+                                if (opciones.includes(jugador2.charAt(0).toUpperCase() + jugador2.slice(1))) break;
+                                // Si no, mostrar un mensaje de error
+                                alert("Respuesta no correcta");
+                            }
+                            // Condicional para determinar el ganador
+                            if (jugador1 === jugador2) {
+                                // Si es un empate, mostrar un mensaje de empate
+                                alert("Es un empate!");
+                            } else if (
+                                // Si el jugador 1 elige Piedra y el jugador 2 elige Tijera o Lagarto y así sucesivamente
+                                (jugador1 === "piedra" && (jugador2 === "tijera" || jugador2 === "lagarto")) ||
+                                (jugador1 === "papel" && (jugador2 === "piedra" || jugador2 === "spock")) ||
+                                (jugador1 === "tijera" && (jugador2 === "papel" || jugador2 === "lagarto")) ||
+                                (jugador1 === "lagarto" && (jugador2 === "papel" || jugador2 === "spock")) ||
+                                (jugador1 === "spock" && (jugador2 === "piedra" || jugador2 === "tijera"))
+                            ) {
+                                // Si el jugador 1 gana, mostrar un mensaje de que ha ganado
+                                alert("¡Jugador 1 ha ganado!");
+                                // Aumentar la puntuación del jugador 1
+                                puntuacionJugador1Especial++;
+                            } else {
+                                // Si el jugador 2 gana, mostrar un mensaje de que ha ganado
+                                alert("¡Jugador 2 ha ganado!");
+                                // Aumentar la puntuación del jugador 2
+                                puntuacionJugador2Especial++;
+                            }
+                            // Mostrar la puntuación del jugador 1 y del jugador 2
+                            alert("Puntuación:\n" + nombre + ": " + puntuacionJugador1Especial + "\n" + nombreJugador2 + ": " + puntuacionJugador2Especial);
+                        }
+                    }
+                    // Preguntar al jugador si quiere jugar de nuevo
+                    if (confirm("¿Quieres jugar de nuevo?")) {
+                        // Si el jugador quiere jugar de nuevo, llamar a la función jugarDeNuevo
+                        jugarDeNuevo();
+                    } else {
+                        // Si no, mostrar un mensaje de despedida
+                        alert("¡Gracias por jugar!");
+                        // Redirigir a la página anterior
+                        window.history.back();
+                    }
+                }
+                // Llamar a la función jugarDeNuevo
+                jugarDeNuevo();
+            }, 100); // Tiempo de espera para que se cargue el fondo animado 
+        };
+    </script>
+</body>
+</html>

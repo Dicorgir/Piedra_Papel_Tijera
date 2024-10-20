@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel, Tijera, Lagarto, Spock</title>
+    <link rel="icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('fonts/minecraft/Minecraft.ttf') format('truetype');
+        }
+        h2 {
+            font-family: 'Minecraft', sans-serif;
+            text-align: center;
+            color: #c70000;
+            font-size: 80px;
+        }
+        body {
+            background: url(img/fondoMinecraft6.jpg) no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        #versus {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-direction: row;
+        }
+        #versus img {
+            margin: 0 10px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+        #result {
+            font-family: 'Minecraft', sans-serif;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+        }
+        .button {
+            font-family: 'Minecraft', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+        #replayButton {
+            background-color: green;
+        }
+        #replayButton:hover {
+            background-color: darkgreen;
+        }
+        #viewResultsButton {
+            background-color: blue;
+        }
+        #viewResultsButton:hover {
+            background-color: darkblue;
+        }
+        #userName {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: 'Minecraft', sans-serif;
+            color: rgb(128, 128, 128);
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="userName">Nombre: </div>
+    <h2>RESULTADO</h2>
+    <div id="versus">
+        <img id="userChoice" alt="Tu elección">
+        <img src="img/versus.png" alt="Versus">
+        <img id="machineChoice" alt="Elección de la máquina">
+    </div>
+    <div id="result"></div>
+    <button id="replayButton" class="button" onclick="replay()">Volver a Jugar</button>
+    <button id="viewResultsButton" class="button" onclick="viewResults()">Ver Resultados</button>
+
+    <script>
+        /**
+         ** @Name: Diego André Cornejo Giraldo
+         ** @Date: 13/10/24
+         ** @Version: 1.0
+         ** @Description: Juego de Piedra, Papel o Tijera
+         */
+        // Obtener la elección del usuario desde el localStorage
+        const userChoice = localStorage.getItem('userChoice');
+
+        // Generar una elección aleatoria para la máquina
+        const choices = ['piedra', 'papel', 'tijeras', 'lagarto', 'spock'];
+        const machineChoice = choices[Math.floor(Math.random() * choices.length)];
+
+        // Mostrar las imágenes correspondientes
+        document.getElementById('userChoice').src = `img/${userChoice}.png`;
+        document.getElementById('machineChoice').src = `img/${machineChoice}.png`;
+
+        // Determinar el resultado
+        let result;
+        if (userChoice === machineChoice) {
+            result = 'Empate';
+        } else if (
+            (userChoice === 'piedra' && (machineChoice === 'tijeras' || machineChoice === 'lagarto')) ||
+            (userChoice === 'papel' && (machineChoice === 'piedra' || machineChoice === 'spock')) ||
+            (userChoice === 'tijeras' && (machineChoice === 'papel' || machineChoice === 'lagarto')) ||
+            (userChoice === 'lagarto' && (machineChoice === 'spock' || machineChoice === 'papel')) ||
+            (userChoice === 'spock' && (machineChoice === 'tijeras' || machineChoice === 'piedra'))
+        ) {
+            result = 'Ganaste';
+            let jugadorPuntos = parseInt(localStorage.getItem('jugadorPuntosEspecial')) || 0;
+            jugadorPuntos++;
+            localStorage.setItem('jugadorPuntosEspecial', jugadorPuntos);
+        } else {
+            result = 'Perdiste';
+            let maquinaPuntos = parseInt(localStorage.getItem('maquinaPuntosEspecial')) || 0;
+            maquinaPuntos++;
+            localStorage.setItem('maquinaPuntosEspecial', maquinaPuntos);
+        }
+
+        // Mostrar el resultado
+        document.getElementById('result').textContent = result;
+
+        // Mostrar el nombre del usuario
+        document.addEventListener('DOMContentLoaded', function() {
+            var username = localStorage.getItem('username') || 'Invitado';
+            document.getElementById('userName').textContent = 'Nombre: ' + username;
+        });
+
+        // Función para volver a jugar
+        function replay() {
+            window.location.href = 'UnJugadorEspecial.html';
+        }
+
+        // Función para ver resultados
+        function viewResults() {
+            window.location.href = 'Resultado1JugadorEspecial.html';
+        }
+    </script>
+</body>
+</html>

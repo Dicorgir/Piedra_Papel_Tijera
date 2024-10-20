@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modo de juego Normal</title>
+    <link rel="icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('fonts/minecraft/Minecraft.ttf') format('truetype');
+        }
+        body {
+            background: url(img/fondoMinecraft4.jpg) no-repeat center center fixed;
+            background-size: cover;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 180px;
+            margin-top: 50px;
+        }
+        h1 {
+            font-family: 'Minecraft', sans-serif;
+            text-align: center;
+            color: #ffffff;
+            font-size: 90px;
+        }
+        .mesa, .mesa2 {
+            width: 400px;
+            height: 400px;
+        }
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: 'Minecraft', sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+        }
+        .back-button {
+            font-family: 'Minecraft', sans-serif;
+            background-color: brown;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-right" id="username"></div>
+    <button class="back-button" onclick="location.href='ModoPagina.html'">Atrás</button>
+    <h1>ELIJE EL NÚMERO DE JUGADORES</h1><br>
+    <div class="button-container">
+        <img src="img/mesa.jpg" alt="1jugador" class="mesa" onclick="location.href='UnJugador.html'">
+        <img src="img/mesa2.jpg" alt="2jugadores" class="mesa2" onclick="location.href='DosJugadores.html'">
+    </div>
+    <script>
+        /**
+         ** @Name: Diego André Cornejo Giraldo
+         ** @Date: 13/10/24
+         ** @Version: 1.0
+         ** @Description: Juego de Piedra, Papel o Tijera
+         */
+        // Evento que se ejecuta cuando el documento ha sido cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Se obtiene el nombre de usuario almacenado en el almacenamiento local
+            var username = localStorage.getItem('username') || 'Invitado';
+            // Se asigna el nombre de usuario al elemento con el id 'username'
+            document.getElementById('username').textContent = 'Nombre: ' + username;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel, Tijera, Lagarto o Spock - Dos Jugadores</title>
+    <link rel="icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('fonts/minecraft/Minecraft.ttf') format('truetype');
+        }
+        body {
+            background: url(img/fondoAnimado4.gif) no-repeat center center fixed;
+            background-size: cover;
+        }
+        .option {
+            display: inline-block;
+            margin: 20px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .option img {
+            width: 300px;
+            height: 300px;
+        }
+        .selected {
+            border: 5px solid white;
+            border-radius: 20%;
+        }
+        h1 {
+            font-family: 'Minecraft', sans-serif;
+            text-align: center;
+            color: #a2a2a2;
+            font-size: 90px;
+        }
+        #options1, #options2 {
+            text-align: center;
+        }
+        .confirmButton {
+            font-family: 'Minecraft', sans-serif;
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .confirmButton:hover {
+            background-color: darkgreen;
+        }
+        #userName {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: 'Minecraft', sans-serif;
+            color: rgb(128, 128, 128);
+            font-size: 24px;
+        }
+        #player2Section {
+            display: none;
+        }
+        .backButton {
+            font-family: 'Minecraft', sans-serif;
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: brown;
+            color: white;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+        .backButton:hover {
+            background-color: darkbrown;
+        }
+    </style>
+</head>
+<body>
+    <div id="userName">Nombre: </div>
+    <h1 id="title1">Jugador 1: ELIGE PIEDRA, PAPEL, TIJERA, LAGARTO o SPOCK</h1>
+    <div id="options1">
+        <div class="option" data-choice="piedra">
+            <img src="img/piedra.png" alt="Piedra">
+        </div>
+        <div class="option" data-choice="papel">
+            <img src="img/papel.png" alt="Papel">
+        </div>
+        <div class="option" data-choice="tijeras">
+            <img src="img/tijeras.png" alt="Tijeras">
+        </div>
+        <div class="option" data-choice="lagarto">
+            <img src="img/lagarto.png" alt="Lagarto">
+        </div>
+        <div class="option" data-choice="spock">
+            <img src="img/spock.png" alt="Spock">
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="confirmButton" id="confirmButton1">CONFIRMAR JUGADOR 1</button>
+    </div>
+
+    <div id="player2Section">
+        <h1 id="title2">Jugador 2: ELIGE PIEDRA, PAPEL, TIJERA, LAGARTO o SPOCK</h1>
+        <div id="options2">
+            <div class="option" data-choice="piedra">
+                <img src="img/piedra.png" alt="Piedra">
+            </div>
+            <div class="option" data-choice="papel">
+                <img src="img/papel.png" alt="Papel">
+            </div>
+            <div class="option" data-choice="tijeras">
+                <img src="img/tijeras.png" alt="Tijeras">
+            </div>
+            <div class="option" data-choice="lagarto">
+                <img src="img/lagarto.png" alt="Lagarto">
+            </div>
+            <div class="option" data-choice="spock">
+                <img src="img/spock.png" alt="Spock">
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="confirmButton" id="confirmButton2">CONFIRMAR JUGADOR 2</button>
+        </div>
+    </div>
+
+    <button class="backButton" id="backButton">Atrás</button>
+
+    <script>
+        /**
+         ** @Name: Diego André Cornejo Giraldo
+         ** @Date: 13/10/24
+         ** @Version: 1.0
+         ** @Description: Juego de Piedra, Papel o Tijera.
+         */
+
+        let selectedOption1 = null; // Variable para almacenar la opción seleccionada por el Jugador 1
+        let selectedOption2 = null; // Variable para almacenar la opción seleccionada por el Jugador 2
+
+        // Evento para seleccionar la opción del Jugador 1
+        document.querySelectorAll('#options1 .option').forEach(option => {
+            option.addEventListener('click', () => {
+                // Condicional para quitar la clase 'selected' de la opción seleccionada anteriormente
+                if (selectedOption1) {
+                    // Se le quita la clase 'selected' a la opción seleccionada
+                    selectedOption1.classList.remove('selected');
+                }
+                // Se le agrega la clase 'selected' a la opción seleccionada
+                option.classList.add('selected');
+                // Se asigna la opción seleccionada a la variable selectedOption1
+                selectedOption1 = option;
+            });
+        });
+        // Evento para seleccionar la opción del Jugador 2
+        document.querySelectorAll('#options2 .option').forEach(option => {
+            option.addEventListener('click', () => {
+                // Condicional para quitar la clase 'selected' de la opción seleccionada anteriormente
+                if (selectedOption2) {
+                    // Se le quita la clase 'selected' a la opción seleccionada
+                    selectedOption2.classList.remove('selected');
+                }
+                // Se le agrega la clase 'selected' a la opción seleccionada
+                option.classList.add('selected');
+                // Se asigna la opción seleccionada a la variable selectedOption2
+                selectedOption2 = option;
+            });
+        });
+        // Evento para confirmar la elección del Jugador 1
+        document.getElementById('confirmButton1').addEventListener('click', () => {
+            // Condicional para verificar si el Jugador 1 ha seleccionado una opción
+            if (selectedOption1) {
+                // Se almacena la opción seleccionada en el localStorage
+                localStorage.setItem('userChoice1', selectedOption1.dataset.choice);
+                // Se solicita el nombre del Jugador 2
+                const player2Name = prompt('Jugador 2, por favor ingresa tu nombre:');
+                // Se almacena el nombre del Jugador 2 en el localStorage
+                localStorage.setItem('player2Name', player2Name);
+                // Se cambia el título del Jugador 2
+                document.getElementById('title2').textContent = player2Name + ': ELIGE PIEDRA, PAPEL, TIJERA, LAGARTO o SPOCK';
+                // Se muestra la sección del Jugador 2
+                document.getElementById('player2Section').style.display = 'block';
+                // Se oculta la sección del Jugador 1
+                document.getElementById('options1').style.display = 'none';
+                // Se oculta el botón de confirmar del Jugador 1
+                document.getElementById('confirmButton1').style.display = 'none';
+                // Se oculta el título del Jugador 1
+                document.getElementById('title1').style.display = 'none';
+            } else {
+                // Se muestra una alerta si el Jugador 1 no ha seleccionado una opción
+                alert('Jugador 1, por favor elige una opción.');
+            }
+        });
+        // Evento para confirmar la elección del Jugador 2
+        document.getElementById('confirmButton2').addEventListener('click', () => {
+            // Condicional para verificar si el Jugador 2 ha seleccionado una opción
+            if (selectedOption2) {
+                // Se almacena la opción seleccionada en el localStorage
+                localStorage.setItem('userChoice2', selectedOption2.dataset.choice);
+                // Se redirige a la página del juego
+                window.location.href = 'versus2JugadoresEspecial.html'; 
+            } else {
+                // Se muestra una alerta si el Jugador 2 no ha seleccionado una opción
+                alert('Jugador 2, por favor elige una opción.');
+            }
+        });
+        // Evento para mostrar el nombre del usuario en la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Se obtiene el nombre del usuario del localStorage
+            var username = localStorage.getItem('username') || 'Invitado';
+            // Se muestra el nombre del usuario en la página
+            document.getElementById('userName').textContent = 'Nombre: ' + username;
+            // Se cambia el título del Jugador 1
+            document.getElementById('title1').textContent = username + ': ELIGE PIEDRA, PAPEL, TIJERA, LAGARTO o SPOCK';
+        });
+        // Evento para regresar a la página anterior
+        document.getElementById('backButton').addEventListener('click', () => {
+            // Se redirige a la página anterior
+            window.location.href = 'ModoJuegoEspecial.html';
+        });
+    </script>
+</body>
+</html>

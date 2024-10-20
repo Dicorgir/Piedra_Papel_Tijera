@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+    <link rel="icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('fonts/minecraft/Minecraft.ttf') format('truetype');
+        }
+        body {
+            background: url(img/fondoAnimado3.gif) no-repeat center center fixed;
+            background-size: cover;
+        }
+        .option {
+            display: inline-block;
+            margin: 20px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .option img {
+            width: 350px;
+            height: 350px;
+        }
+        .selected {
+            border: 5px solid white;
+            border-radius: 20%;
+        }
+        h1 {
+            font-family: 'Minecraft', sans-serif;
+            text-align: center;
+            color: #a2a2a2;
+            font-size: 90px;
+        }
+        #options {
+            text-align: center;
+        }
+        #confirmButton {
+            font-family: 'Minecraft', sans-serif;
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #confirmButton:hover {
+            background-color: darkgreen;
+        }
+        #userName {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: 'Minecraft', sans-serif;
+            color: rgb(128, 128, 128);
+            font-size: 24px;
+        }
+        #backButton {
+            font-family: 'Minecraft', sans-serif;
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: brown;
+            color: white;
+            border: none;
+            cursor: pointer;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+        #backButton:hover {
+            background-color: darkbrown;
+        }
+    </style>
+</head>
+<body>
+    <div id="userName">Nombre: </div>
+    <h1>ELIGE PIEDRA, PAPEL o TIJERA</h1>
+    <div id="options">
+        <div class="option" data-choice="piedra">
+            <img src="img/piedra.png" alt="Piedra">
+        </div>
+        <div class="option" data-choice="papel">
+            <img src="img/papel.png" alt="Papel">
+        </div>
+        <div class="option" data-choice="tijeras">
+            <img src="img/tijeras.png" alt="Tijeras">
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <button id="confirmButton">CONFIRMAR</button>
+    </div>
+    <button id="backButton">Atrás</button>
+
+    <script>
+        /**
+         ** @Name: Diego André Cornejo Giraldo
+         ** @Date: 13/10/24
+         ** @Version: 1.0
+         ** @Description: Juego de Piedra, Papel o Tijera
+         */
+        let selectedOption = null; // Variable para almacenar la opción seleccionada
+        // Añadir un evento de clic a cada opción
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', () => {
+                // Si ya hay una opción seleccionada, quitar la clase 'selected'
+                if (selectedOption) {
+                    // Eliminar la clase 'selected' de la opción seleccionada
+                    selectedOption.classList.remove('selected');
+                }
+                // Agregar la clase 'selected' a la opción seleccionada
+                option.classList.add('selected');
+                // Actualizar la opción seleccionada
+                selectedOption = option;
+            });
+        });
+        // Añadir un evento de clic al botón de confirmación
+        document.getElementById('confirmButton').addEventListener('click', () => {
+            // Condicional para verificar si se ha seleccionado una opción
+            if (selectedOption) {
+                // Guardar la opción seleccionada en el localStorage
+                localStorage.setItem('userChoice', selectedOption.dataset.choice);
+                // Redireccionar a la página de versus
+                window.location.href = 'versus.html';
+            } else {
+                // Mostrar un mensaje de alerta si no se ha seleccionado una opción
+                alert('Por favor, elige una opción.');
+            }
+        });
+        // Mostrar el nombre del usuario en la parte superior derecha
+        document.addEventListener('DOMContentLoaded', function() {
+            var username = localStorage.getItem('username') || 'Invitado'; // Obtener el nombre de usuario
+            // Mostrar el nombre de usuario en el elemento con el id 'userName'
+            document.getElementById('userName').textContent = 'Nombre: ' + username;
+        });
+        // Añadir un evento de clic al botón de atrás
+        document.getElementById('backButton').addEventListener('click', () => {
+            // Redireccionar a la página anterior
+            window.location.href = 'ModoJuegoNormal.html';
+        });
+    </script>
+</body>
+</html>

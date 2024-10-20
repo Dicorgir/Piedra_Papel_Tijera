@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modo de Juego Especial</title>
+    <link rel="icon" href="img/icono.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('fonts/minecraft/Minecraft.ttf') format('truetype');
+        }
+        body {
+            background: url(img/fondoAnimado6.gif) no-repeat center center fixed;
+            background-size: cover;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 180px;
+            margin-top: 50px;
+        }
+        h1 {
+            font-family: 'Minecraft', sans-serif;
+            text-align: center;
+            color: #ffffff;
+            font-size: 90px;
+        }
+        .mesa, .mesa2 {
+            width: 400px;
+            height: 400px;
+        }
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: 'Minecraft', sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+        }
+        .back-button, .explain-button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-family: 'Minecraft', sans-serif;
+            background-color: brown;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .explain-button {
+            bottom: 50px; /* Adjusted to be above the back button */
+        }
+        .mesa2-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .mesa2-button {
+            margin-top: 20px;
+            margin-left: -580px; /* Adjust this value to move the button to the left */
+            font-family: 'Minecraft', sans-serif;
+            background-color: brown;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-right" id="username"></div>
+    <h1>ELIJE EL NÚMERO DE JUGADORES</h1><br>
+    <div class="button-container">
+        <img src="img/mesa.jpg" alt="1jugador" class="mesa" onclick="location.href='UnJugadorEspecial.html'">
+        <div class="mesa2-container">
+            <img src="img/mesa2.jpg" alt="2jugadores" class="mesa2" onclick="location.href='DosJugadoresEspecial.html'">
+            <button class="mesa2-button" onclick="location.href='ExplicarJuego.html'">EXPLICAR MODO</button>
+        </div>
+    </div>
+    <button class="back-button" onclick="location.href='ModoPagina.html'">Atrás</button>
+    <script>
+        /**
+         ** @Name: Diego André Cornejo Giraldo
+         ** @Date: 13/10/24
+         ** @Version: 1.0
+         ** @Description: Juego de Piedra, Papel o Tijera
+         */
+        // Evento que se ejecuta cuando el documento ha sido cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtenemos el nombre de usuario guardado en el localStorage
+            var username = localStorage.getItem('username') || 'Invitado';
+            // Mostramos el nombre de usuario en el documento
+            document.getElementById('username').textContent = 'Nombre: ' + username;
+        });
+    </script>
+</body>
+</html>

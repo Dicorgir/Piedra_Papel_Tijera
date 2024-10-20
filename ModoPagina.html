@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra Papel Tijera</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/icono.ico" type="image/x-icon">
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('fonts/minecraft/Minecraft.ttf') format('truetype');
+        }
+        body {
+            background: url(img/fondoMinecraft3.jpg) no-repeat center center fixed;
+            background-size: cover;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 180px;
+            margin-top: 50px;
+        }
+        h1 {
+            font-family: 'Minecraft', sans-serif;
+            text-align: center;
+            color: #fff;
+            font-size: 90px;
+        }
+        .cuadro, .cuadro2 {
+            width: 500px;
+            height: 500px;
+        }
+        .input-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .input-container input {
+            font-size: 20px;
+            padding: 10px;
+        }
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(138, 66, 8, 0.865);
+            color: white;
+            font-family: 'Minecraft', sans-serif;
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>ELIJE EL MODO</h1><br>
+
+    <div class="input-container">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 30px;">
+            <input type="text" id="username" placeholder="Introduce tu nombre" style="background: transparent; color: white;">
+            <img src="img/cuadroGuardar.png" alt="Guardar Nombre" onclick="saveName()" style="cursor: pointer; width: 240px; height: 90px;">
+        </div>
+    </div>
+
+    <div class="button-container">
+        <img src="img/cuadro.png" alt="MODO CONSOLA" class="cuadro disabled" onclick="chooseMode('ModoJuegoNormal.html')">
+        <img src="img/cuadro2.png" alt="MODO CONSOLA" class="cuadro2 disabled" onclick="chooseMode('ModoJuegoEspecial.html')">
+    </div>
+
+    <button class="back-button" onclick="goBack()">Atrás</button>
+
+    <script>
+        /**
+         ** @Name: Diego André Cornejo Giraldo
+         ** @Date: 13/10/24
+         ** @Version: 1.0
+         ** @Description: Juego de Piedra, Papel o Tijera
+         */
+        // Función para guardar el nombre del usuario
+        function saveName() {
+            const username = document.getElementById('username').value; // Obtenemos el valor del input
+            // Condición para verificar si el input no está vacío
+            if (username) {
+                // Guardamos el nombre en el localStorage
+                localStorage.setItem('username', username);
+                // Mostramos un mensaje de confirmación
+                alert('Nombre guardado correctamente');
+                // Habilitamos los botones
+                document.querySelectorAll('.cuadro, .cuadro2').forEach(button => {
+                    // Removemos la clase 'disabled' para habilitar los botones
+                    button.classList.remove('disabled');
+                });
+            } else {
+                // Mostramos un mensaje de error
+                alert('Por favor, introduce tu nombre');
+            }
+        }
+        // Función para elegir el modo de juego
+        function chooseMode(url) {
+            // Obtenemos el nombre de usuario guardado en el localStorage
+            const username = localStorage.getItem('username');
+            // Condición para verificar si el usuario ha ingresado su nombre
+            if (username) {
+                // Redireccionamos a la página del modo de juego seleccionado
+                location.href = url;
+            } else {
+                // Mostramos un mensaje de error
+                alert('Por favor, introduce tu nombre antes de elegir el modo de juego');
+            }
+        }
+        // Función para regresar a la página anterior
+        function goBack() {
+            // Redireccionamos a la página anterior
+            location.href = 'eleccionModo.html';
+        }
+    </script>
+</body>
+</html>
