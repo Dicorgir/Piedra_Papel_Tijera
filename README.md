@@ -1,7 +1,7 @@
 # 🎮 Piedra, Papel, Tijera - Edición Minecraft
 
 <div align="center">
-  <img width="250" height="420"   alt="piedra_papel_tijera_portada" src="https://github.com/user-attachments/assets/e56b059a-1b71-46ea-bc6f-9050efad790c" />
+  <img width="250" height="420" alt="piedra_papel_tijera_portada" src="https://github.com/user-attachments/assets/583612ca-8f5d-4a45-90fb-a72cd649252a" />
 </div>
 
 Un juego interactivo de Piedra, Papel, Tijera con temática de Minecraft, desarrollado con HTML, CSS y JavaScript vanilla. Incluye dos modalidades de juego: clásica y especial (con Lagarto y Spock). 
